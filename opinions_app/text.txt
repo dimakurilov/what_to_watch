@@ -1,0 +1,18 @@
+what_to_watch/
+├── instance/
+│   └── db.sqlite3
+├── migrations/
+├── opinions_app/
+│   ├── static/
+│   ├── templates/
+│   ├── __init__.py
+│   ├── cli_commands.py
+│   ├── error_handlers.py
+│   ├── forms.py
+│   ├── models.py
+│   └── views.py
+├── .env
+├── .gitignore
+├── opinions.csv
+├── requirements.txt
+└── settings.py

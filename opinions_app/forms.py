@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField, URLField
 from wtforms.validators import DataRequired, Length, Optional
+
+# noqa: E302
 class OpinionForm(FlaskForm):
     title = StringField(
         'Введите название фильма',
@@ -15,3 +17,4 @@ class OpinionForm(FlaskForm):
         validators=[Length(1, 256), Optional()]
     )
     submit = SubmitField('Добавить')
+# конец файла (обязательно нажмите Enter здесь)

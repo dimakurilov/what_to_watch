@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
 # Обратите внимание на две точки! Это значит "подняться на уровень выше" в папку what_to_watch
-from ..settings import Config 
+from settings import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)

@@ -1,7 +1,6 @@
-        import csv
+import csv
 from . import app, db
 from .models import Opinion
-
 @app.cli.command('load_opinions')
 def load_opinions_command():
     """Загружает мнения из файла opinions.csv в базу данных."""

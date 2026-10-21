@@ -1,17 +1,17 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField, URLField
+from wtforms import StringField, SubmitField, TextAreaField, URLField
 from wtforms.validators import DataRequired, Length, Optional
 class OpinionForm(FlaskForm):
     title = StringField(
-        'Название фильма',
-        validators=[DataRequired(message='Обязательное поле'), Length(min=1, max=128)]
+        'Введите название фильма',
+        validators=[DataRequired(message='Обязательное поле'), Length(1, 128)]
     )
     text = TextAreaField(
-        'Ваше мнение',
+        'Напишите мнение',
         validators=[DataRequired(message='Обязательное поле')]
     )
     source = URLField(
-        'Ссылка на обзор (необязательно)',
-        validators=[Length(min=1, max=256), Optional()]
+        'Добавьте ссылку на подробный обзор фильма',
+        validators=[Length(1, 256), Optional()]
     )
     submit = SubmitField('Добавить')

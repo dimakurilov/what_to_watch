@@ -1,8 +1,9 @@
-from flask import render_template
 from . import app
 
 @app.errorhandler(404)
 def page_not_found(error):
-    return render_template('404.html'), 404
+    return "Страница не найдена (404)", 404
 
-# Если у вас были другие обработчики (500 и т.д.), добавьте их сюда
+@app.errorhandler(500)
+def internal_error(error):
+    return "Внутренняя ошибка сервера (500)", 500

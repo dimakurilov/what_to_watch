@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Случайное мнение</title>
+</head>
+<body>
+    <h1>Случайное мнение</h1>
+    <a href="/">На главную</a>
+    <hr>
+    {% if story %}
+        <h3>{{ story.title }}</h3>
+        <p>{{ story.text }}</p>
+        {% if story.source %}
+            <a href="{{ story.source }}" target="_blank">Источник</a>
+        {% endif %}
+    {% else %}
+        <p>В базе пока нет мнений.</p>
+    {% endif %}
+</body>
+</html>

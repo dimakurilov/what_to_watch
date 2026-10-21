@@ -33,6 +33,7 @@ def add_opinion_view():
 
     return render_template('add_opinion.html', form=form)
 
+
 # Создаем псевдоним на случай, если тесты ищут именно opinion_view
 opinion_view = add_opinion_view
 

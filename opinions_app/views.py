@@ -6,13 +6,15 @@ from . import app, db
 from .forms import OpinionForm
 from .models import Opinion
 
-# noqa: E302
+
+# Главная страница
 @app.route('/')
 def index_view():
     opinions = Opinion.query.all()
     return render_template('index.html', opinions=opinions)
 
-# noqa: E302
+
+# Добавление мнения
 @app.route('/add', methods=['GET', 'POST'])
 def add_view():
     form = OpinionForm()
@@ -33,7 +35,8 @@ def add_view():
 
     return render_template('add_opinion.html', form=form)
 
-# noqa: E302
+
+# Случайное мнение
 @app.route('/story')
 def random_story_view():
     opinions = Opinion.query.all()
@@ -41,4 +44,3 @@ def random_story_view():
         return "В базе пока нет рассказов."
     random_opinion = choice(opinions)
     return render_template('random.html', story=random_opinion)
-# конец файла (обязательно нажмите Enter здесь)

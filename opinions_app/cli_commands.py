@@ -3,7 +3,8 @@ import csv
 from . import app, db
 from .models import Opinion
 
-# noqa: E302
+
+# Команда загрузки данных
 @app.cli.command('load_opinions')
 def load_opinions_command():
     """Загружает мнения из файла opinions.csv в базу данных."""
@@ -21,4 +22,3 @@ def load_opinions_command():
                 count += 1
         db.session.commit()
     print(f'Успешно загружено {count} новых мнений!')
-# конец файла (обязательно нажмите Enter здесь)

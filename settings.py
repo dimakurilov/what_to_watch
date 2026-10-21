@@ -2,13 +2,14 @@ import os
 
 from dotenv import load_dotenv
 
-# noqa: E302
+
+# Загрузка переменных окружения
 load_dotenv()
 
-# noqa: E302
+
+# Настройки приложения
 class Config(object):
     SQLALCHEMY_DATABASE_URI = os.getenv(
         'SQLALCHEMY_DATABASE_URI', 'sqlite:///db.sqlite3'
     )
     SECRET_KEY = os.getenv('SECRET_KEY', 'default_secret_key')
-# конец файла (обязательно нажмите Enter здесь)

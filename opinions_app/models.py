@@ -2,7 +2,8 @@ from datetime import datetime
 
 from . import db
 
-# noqa: E302
+
+# Модель мнения
 class Opinion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(128), nullable=False)
@@ -10,4 +11,3 @@ class Opinion(db.Model):
     source = db.Column(db.String(256))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     added_by = db.Column(db.String(64))
-# конец файла (обязательно нажмите Enter здесь)

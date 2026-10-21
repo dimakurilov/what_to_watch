@@ -14,7 +14,7 @@ def index_view():
 
 
 @app.route('/add', methods=['GET', 'POST'])
-def add_opinion_view():
+def opinion_view():  # Переименовали функцию!
     form = OpinionForm()
     if form.validate_on_submit():
         text = form.text.data

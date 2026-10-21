@@ -16,7 +16,7 @@ def index_view():
 
 # Добавление мнения
 @app.route('/add', methods=['GET', 'POST'])
-def add_view():
+def add_opinion_view():
     form = OpinionForm()
     if form.validate_on_submit():
         text = form.text.data

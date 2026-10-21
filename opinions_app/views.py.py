@@ -37,7 +37,7 @@ def add_opinion_view():
 
 
 # Случайное мнение
-@app.route('/add', methods=['GET', 'POST'])
+@app.route('/story')
 def random_story_view():
     opinions = Opinion.query.all()
     if not opinions:

@@ -1,38 +1,43 @@
-from random import randint
+from random import choice
 
-from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
+from flask import flash, redirect, render_template, url_for
 
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
-app.config['SECRET_KEY'] = 'secret'
-db = SQLAlchemy(app)
+from . import app, db
+from .forms import OpinionForm
+from .models import Opinion
 
 
-# Модель
-class Story(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(128), nullable=False)
-    text = db.Column(db.Text, nullable=False)
-
-
-# Главная
 @app.route('/')
 def index_view():
-    stories = Story.query.all()
-    return render_template('stories.html', stories=stories)
+    opinions = Opinion.query.all()
+    return render_template('index.html', opinions=opinions)
 
 
-# Добавление
-@app.route('/add')
-def add_view():
-    return 'Это страница добавления рассказа'
+@app.route('/add', methods=['GET', 'POST'])
+def add_opinion_view():
+    form = OpinionForm()
+    if form.validate_on_submit():
+        text = form.text.data
+        if Opinion.query.filter_by(text=text).first():
+            flash('Такое мнение уже было оставлено ранее!', 'error')
+            return render_template('add_opinion.html', form=form)
+
+        opinion = Opinion(
+            title=form.title.data,
+            text=text,
+            source=form.source.data
+        )
+        db.session.add(opinion)
+        db.session.commit()
+        return redirect(url_for('index_view'))
+
+    return render_template('add_opinion.html', form=form)
 
 
-# Случайный рассказ
 @app.route('/story')
 def random_story_view():
-    stories_count = Story.query.count()
-    random_story = Story.query.get_or_404(randint(1, stories_count))
-    return render_template('random.html', story=random_story)
+    opinions = Opinion.query.all()
+    if not opinions:
+        return "В базе пока нет рассказов."
+    random_opinion = choice(opinions)
+    return render_template('random.html', story=random_opinion)

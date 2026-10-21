@@ -7,14 +7,12 @@ from .forms import OpinionForm
 from .models import Opinion
 
 
-# Главная страница
 @app.route('/')
 def index_view():
     opinions = Opinion.query.all()
     return render_template('index.html', opinions=opinions)
 
 
-# Добавление мнения
 @app.route('/add', methods=['GET', 'POST'])
 def add_opinion_view():
     form = OpinionForm()
@@ -36,7 +34,6 @@ def add_opinion_view():
     return render_template('add_opinion.html', form=form)
 
 
-# Случайное мнение
 @app.route('/story')
 def random_story_view():
     opinions = Opinion.query.all()
